@@ -1,7 +1,6 @@
-from multiprocessing import connection
 import os
-import psycopg2
 import logging
+import psycopg2
 import telebot
 from config import *
 from flask import Flask, request
