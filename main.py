@@ -22,7 +22,7 @@ def start(message):
     username = message.from_user.username
     bot.reply_to(message, f"Hello, {username}!")
 
-    db_object.execute(f"SELECT id FROM users WHERE id = {id}")
+    db_object.execute(f"SELECT id FROM users WHERE id = {user_id}")
     result = db_object.fetchone() 
 
     if not result:
