@@ -20,7 +20,7 @@ def update_messages_count(user_id):
 def start(message):
     user_id = message.from_user.id
     username = message.from_user.username
-    bot.reply_to(message, f"Hello, {username}!")
+    bot.reply_to(message, f"Привет, {username}!")
 
     db_object.execute(f"SELECT id FROM users WHERE id = {user_id}")
     result = db_object.fetchone() 
@@ -37,11 +37,11 @@ def get_stats(message):
     result = db_object.fetchall()
 
     if not result:
-        bot.reply_to(message, "No data...")
+        bot.reply_to(message, "Данных нет...")
     else:
         reply_message = "- Top flooders:\n"
         for i, item in enumerate(result):
-            reply_message += f'[{i +1}] {item[1].strip()} ({item[0]}) : {item[2]} messages.\n'
+            reply_message += f'[{i +1}] {item[1].strip()} ({item[0]}) : {item[2]} сообщений.\n'
         bot.reply_to(message, reply_message)
     update_messages_count(message.from_user.id)
     
