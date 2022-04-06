@@ -254,7 +254,7 @@ def answer_toquest(message):
     
     else:
       bot.send_message(message.chat.id,"Прошу прощения {0.first_name}, не знаю что ответить.".format(message.from_user))
-bot.infinity_polling()
+
 
 @server.route(f'/{TOKEN}', methods = ['POST'])      #работа с сервером
 def redirect_message():
