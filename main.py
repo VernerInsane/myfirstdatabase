@@ -24,6 +24,20 @@ def start(message):
     user_id = message.from_user.id
     username = message.from_user.username
     bot.reply_to(message, f"Привет, {username}!")  #обращение бота к пользователю
+    sti = open('sticker.webp', 'rb')
+    bot.send_sticker(message.chat.id, sti)
+
+    markup = types.ReplyKeyboardMarkup(resize_keyboard = True,row_width=4)
+    item1 = types.KeyboardButton("Расскажи о Саянске")
+    item2 = types.KeyboardButton("Расскажи о себе")
+    item3 = types.KeyboardButton("Расскажи о достопремичательностях")
+  
+
+    markup.row(item1,item2)
+    markup.row(item3)
+
+    bot.send_message(message.chat.id, "Привет! Чем могу быть полезен?", reply_markup=markup, parse_mode=
+    'html')
 
     db_object.execute(f"SELECT id FROM users WHERE id = {user_id}")  #обращение к таблице в БД
     result = db_object.fetchone() 
@@ -56,22 +70,6 @@ def message_from_user(message):
 @bot.message_handler(commands=['help'])
 def send_help(message):
   bot.reply_to(message,"Команда предусмотрена для дальнейшей разработки бота. Пожалуйста следуйте командам на месте клавиатуры😁")
-@bot.message_handler(commands=['start'])
-def send_welcome(message):
-  sti = open('sticker.webp', 'rb')
-  bot.send_sticker(message.chat.id, sti)
-
-  markup = types.ReplyKeyboardMarkup(resize_keyboard = True,row_width=4)
-  item1 = types.KeyboardButton("Расскажи о Саянске")
-  item2 = types.KeyboardButton("Расскажи о себе")
-  item3 = types.KeyboardButton("Расскажи о достопремичательностях")
-  
-
-  markup.row(item1,item2)
-  markup.row(item3)
-
-  bot.send_message(message.chat.id, "Привет! Чем могу быть полезен?", reply_markup=markup, parse_mode=
-    'html')
 
 @bot.message_handler(content_types=['text'])
 def answer_toquest(message):
