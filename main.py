@@ -23,7 +23,6 @@ def update_messages_count(user_id):
 def start(message):
     user_id = message.from_user.id
     username = message.from_user.username
-    bot.reply_to(message, f"Привет, {username}!")  #обращение бота к пользователю
     sti = open('sticker.webp', 'rb')
     bot.send_sticker(message.chat.id, sti)
 
